@@ -47,6 +47,11 @@ class Task {
 
 submitBtn.onclick = () => {
     let description = taskInput.value
+
+    if(description == "") {
+        alert("Include task description")
+        return
+    }
     tasks.push(new Task(description, false, tasks.length))
 
     taskInput.value = ""
