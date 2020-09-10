@@ -8,7 +8,7 @@ const taskContainer = document.getElementById("taskContainer")
 let tasks = []
 
 let date = new Date()
-let dateString = date.getFullYear() + "/" + date.getMonth() + "/" + date.getDate()
+let dateString = date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate()
 dateSpan.innerHTML = dateString
 
 class Task {
