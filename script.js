@@ -5,44 +5,31 @@ const submitBtn = document.getElementById("submitBtn")
 const taskInput = document.getElementById("taskInput")
 const taskContainer = document.getElementById("taskContainer")
 
-let tasks = []
-
 let date = new Date()
 let dateString = date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate()
 dateSpan.innerHTML = dateString
 
-class Task {
-    constructor(description, isComplete, id) {
-        this.description = description
-        this.isComplete = isComplete
-        this.id = id
+const createNewTask = function (description) {
+    let taskShell = document.createElement('div')
+    taskShell.className = "task"
+
+    let taskText = document.createElement('p')
+    taskText.innerHTML = description
+
+    let xButton = document.createElement("div")
+    xButton.innerHTML = "✖"
+    xButton.className = 'x-button'
+
+    xButton.onclick = function() {
+        this.parentElement.remove()
+    }
+    taskShell.onclick = function() {
+        this.className = "task task-done"
     }
 
-    buildElement() {
-        let taskShell = document.createElement('div')
-        taskShell.id = this.id
-
-        let taskText = document.createElement('p')
-        taskText.innerHTML = this.description
-
-        let xButton = document.createElement("div")
-        xButton.innerHTML = "✖"
-        xButton.className = 'x-button'
-
-        if (this.isComplete) {
-            taskShell.className = "task task-done"
-        } else {
-            taskShell.className = "task"
-        }
-
-        taskShell.appendChild(taskText);
-        taskShell.appendChild(xButton);
-        return taskShell
-    }
-
-    complete() {
-        this.isComplete = true
-    }
+    taskShell.appendChild(taskText)
+    taskShell.appendChild(xButton)
+    return taskShell
 }
 
 submitBtn.onclick = () => {
@@ -52,46 +39,7 @@ submitBtn.onclick = () => {
         alert("Include task description")
         return
     }
-    tasks.push(new Task(description, false, tasks.length))
-
+    
     taskInput.value = ""
-    displayTasks()
-}
-
-taskContainer.onclick = (event) => {
-    let taskShell = event.path[event.path.length - 7]
-    let task = tasks[taskShell.id]
-
-    console.log(task)
-
-    if(event.target.className == "x-button") {
-        console.log("X button")
-        removeTask(task)
-    } else if(event.target.nodeName  == "P") {
-        console.log("Description")
-        task.complete()
-    }
-
-    displayTasks()
-}
-
-const displayTasks = () => {
-    taskContainer.innerHTML = "";
-
-    let taskShells = tasks.map( task => {
-        return task.buildElement()
-    })
-
-    taskShells.forEach( taskShell => taskContainer.append(taskShell) );
-}
-
-const removeTask = (task) => {
-    let index = tasks.indexOf(task);
-    if (index > -1) {
-        tasks.splice(index, 1);
-    }
-
-    tasks.forEach( (task, i) => {
-        task.id = i
-    })
+    taskContainer.appendChild(createNewTask(description))
 }
