@@ -27,37 +27,49 @@ header {
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 50px;
+    height: 100px;
     background: url(./bg.jpg);
-    position: fixed;
-    top: 0;
+    background-size: cover;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
-header::after {
-    content: ""; 
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: linear-gradient(160deg, #ffffffd0 50%, #739b9d30 150%);
-    z-index: -2;
-    backdrop-filter: blur(1px);
-    pointer-events: none;
+#dateContainer {
+    color: white;
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: 0.5rem;
 }
 
 #mainContainer {
     justify-content: flex-start;
-    width: 400px;
-    height: 400px;
+    width: 500px;
+    height: 600px;
+    background: white;
+    border-radius: 10px;
+}
+
+#inputContainer {
+    display: flex;
+    width: 100%;
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+    border: 0px;
+    border-bottom: 1px;
+    border-style: solid;
+    border-color: black;
 }
 
 #taskInput {
-    margin-bottom: 10px;
-    width: 100%;
+    height: 30px;
+    width: 350px;
+    margin-right: 5px;
+    padding: 5px;
 }
+
 #submitBtn {
-    width: 50%;
+    width: 80px;
     height: 30px;
 }
 
@@ -67,12 +79,16 @@ header::after {
 
 .task {
     width: 100%;
+    height: 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background: white;
-    margin: 2px 0;
     text-align: center;
+    border: 0px;
+    border-bottom: 1px;
+    border-style: solid;
+    border-color: black;
 }
 
 .task-done p {
@@ -85,7 +101,10 @@ header::after {
 
 .x-button{
     height: 100%;
-    width: 20px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .x-button:hover {

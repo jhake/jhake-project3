@@ -26,7 +26,7 @@ class Task {
         taskText.innerHTML = this.description
 
         let xButton = document.createElement("div")
-        xButton.innerHTML = "X"
+        xButton.innerHTML = "✖"
         xButton.className = 'x-button'
 
         if (this.isComplete) {
